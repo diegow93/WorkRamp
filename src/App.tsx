@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { FAKE_API_DATA, Section, Task } from "./data/data";
+import inputLogo from "./assets/input-svgrepo-com.svg";
+import textLogo from "./assets/text-align-left-svgrepo-com.svg";
+import multipleChoiceLogo from "./assets/list-with-check-boxes-svgrepo-com.svg";
 
 function Tasks(props: { tasks: Task[] }) {
   return (
@@ -32,6 +35,17 @@ function Sections(props: { sections: Section[] }) {
   );
 }
 
+function ContentButton(props: { logo: string; text: string }) {
+  return (
+    <button className="flex h-14 w-full items-center justify-start gap-3 rounded border border-gray-300 bg-white px-5">
+      <div className="flex h-full max-w-5 items-center justify-center">
+        <img src={props.logo}></img>
+      </div>
+      <span>{props.text}</span>
+    </button>
+  );
+}
+
 function App() {
   const [data] = useState(FAKE_API_DATA.guides);
 
@@ -47,7 +61,12 @@ function App() {
         </div>
       </aside>
       <main className="w-[55%]"></main>
-      <aside className="w-[20%] bg-gray-200"></aside>
+      <aside className="flex w-[20%] flex-col justify-start gap-4 bg-gray-200 p-10">
+        <h2 className="text-xl font-bold">Add Content</h2>
+        {ContentButton({ logo: textLogo, text: "Text" })}
+        {ContentButton({ logo: inputLogo, text: "Text Answer" })}
+        {ContentButton({ logo: multipleChoiceLogo, text: "Multiple Choice" })}
+      </aside>
     </>
   );
 }
