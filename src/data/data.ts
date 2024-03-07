@@ -1,19 +1,20 @@
-type ContentBlockText = {
+export type ContentBlockText = {
   id: string;
   type: "Text";
   content: string;
 };
 
-type ContentBlockAnswer = {
+export type ContentBlockAnswer = {
   id: string;
   type: "Text Answer";
   content: string;
 };
 
-type ContentBlockMultipleChoice = {
+export type ContentBlockMultipleChoice = {
   id: string;
   type: "Multiple Choice";
-  content: {
+  question: string;
+  options: {
     content: string;
     checked: boolean;
   }[];
@@ -69,9 +70,10 @@ export const FAKE_API_DATA: { guides: Guide[] } = {
                 {
                   id: "d73e6336-ab05-4634-91a1-09569cd9b827",
                   type: "Multiple Choice",
-                  content: [
+                  question: "",
+                  options: [
                     {
-                      content: "",
+                      content: "Add Answer Choice",
                       checked: false,
                     },
                   ],
