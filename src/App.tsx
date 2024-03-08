@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   Guide,
-  Section,
   Task,
   addAnswer,
   addMultipleChoice,
@@ -13,53 +12,7 @@ import inputLogo from "./assets/input-svgrepo-com.svg";
 import textLogo from "./assets/text-align-left-svgrepo-com.svg";
 import multipleChoiceLogo from "./assets/list-with-check-boxes-svgrepo-com.svg";
 import { MultipleChoice, Text, TextAnswer } from "./components/contentBlocks";
-
-function Tasks(props: { tasks: Task[] }) {
-  return (
-    <>
-      <ul>
-        {props.tasks.map((task) => (
-          <li key={task.id} className="list-disc font-bold">
-            {task.title}
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-}
-
-function Sections(props: { sections: Section[] }) {
-  return (
-    <>
-      {props.sections.map((section) => (
-        <div key={section.id}>
-          <h2 className="text-xl font-bold">{section.title}</h2>
-          <div className="h-10 w-full p-5">
-            <Tasks tasks={section.tasks} />
-          </div>
-        </div>
-      ))}
-    </>
-  );
-}
-
-function ContentButton(props: {
-  logo: string;
-  text: string;
-  handleOnClick: () => Promise<void>;
-}) {
-  return (
-    <button
-      onClick={() => void props.handleOnClick()}
-      className="flex h-14 w-full items-center justify-start gap-3 rounded border border-gray-300 bg-white px-5"
-    >
-      <div className="flex h-full max-w-5 items-center justify-center">
-        <img src={props.logo}></img>
-      </div>
-      <span>{props.text}</span>
-    </button>
-  );
-}
+import { ContentButton, Sections } from "./components/main";
 
 function App() {
   const [data, setData] = useState<{ guides: Guide[] } | null>(null);
@@ -73,7 +26,9 @@ function App() {
     })();
   }, []);
 
-  return !data || !selectedTask ? null : (
+  if (!data || !selectedTask) return null;
+
+  return (
     <>
       <aside className="flex w-[25%] flex-col bg-gray-200">
         <div className="flex basis-36 items-end justify-start p-6">
@@ -83,7 +38,10 @@ function App() {
         <hr className="w-full basis-1 bg-gray-300"></hr>
 
         <div className="flex-auto p-10">
-          <Sections sections={data.guides[0].sections} />
+          <Sections
+            sections={data.guides[0].sections}
+            selectedTask={selectedTask}
+          />
         </div>
       </aside>
 
