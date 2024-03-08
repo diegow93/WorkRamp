@@ -11,6 +11,7 @@ The app is developed using React (with Vite), given that it's the technology use
 You can run the application in a local dev environment by using Node.js version 20.11.1 and running:
 
 ```lang-bash
+$ npm install
 $ npm run dev
 ```
 
