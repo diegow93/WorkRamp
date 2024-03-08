@@ -86,3 +86,73 @@ export const FAKE_API_DATA: { guides: Guide[] } = {
     },
   ],
 };
+
+export function getGuides() {
+  return new Promise<{
+    guides: Guide[];
+  }>((resolve) => {
+    // Create a new object to change memory reference for React useState.
+    // This simulates what happens when making an HTTP request, were a
+    // new object is created.
+    resolve({ guides: FAKE_API_DATA.guides });
+  });
+}
+
+export function addText() {
+  return new Promise<void>((resolve) => {
+    FAKE_API_DATA.guides[0].sections[0].tasks[0].contentBlocks.push({
+      id: crypto.randomUUID(),
+      type: "Text",
+      content: "",
+    });
+
+    resolve();
+  });
+}
+
+export function addAnswer() {
+  return new Promise<void>((resolve) => {
+    FAKE_API_DATA.guides[0].sections[0].tasks[0].contentBlocks.push({
+      id: crypto.randomUUID(),
+      type: "Text Answer",
+      content: "",
+    });
+
+    resolve();
+  });
+}
+
+export function addMultipleChoice() {
+  return new Promise<void>((resolve) => {
+    FAKE_API_DATA.guides[0].sections[0].tasks[0].contentBlocks.push({
+      id: crypto.randomUUID(),
+      type: "Multiple Choice",
+      question: "",
+      options: [
+        {
+          content: "Add Answer Choice",
+          checked: false,
+        },
+      ],
+    });
+
+    resolve();
+  });
+}
+
+export function deleteContentBlock(id: string) {
+  return new Promise<void>((resolve) => {
+    const contentBlocks =
+      FAKE_API_DATA.guides[0].sections[0].tasks[0].contentBlocks;
+
+    const itemToDelete = contentBlocks.find((block) => block.id === id);
+
+    if (!itemToDelete) {
+      resolve();
+    } else {
+      const index = contentBlocks.indexOf(itemToDelete);
+      contentBlocks.splice(index, 1);
+      resolve();
+    }
+  });
+}
