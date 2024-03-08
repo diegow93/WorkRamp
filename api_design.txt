@@ -1,0 +1,66 @@
+For this part of the assignment I will use the TypeScript types defined in the
+`data.ts` file, located in `src/data/data.ts`, since TypeScript is a great
+language to model data. Doing this, I can present you the payloads in a cleaner
+way, so it's easier to read. Please, refer to `src/data/data.ts` when needed. 
+I'll wrap with <> the types that refer to a TypeScript type from `src/data/data.ts`.
+For example, <Guide> means that we are using the type `Guide` from `src/data/data.ts`.
+
+
+
+GET /guides
+Response: <Guide[]>
+
+GET /guides/:guideId
+Response: <Guide>
+
+PUT /guides/:guideId
+Request: <Guide>
+Response: HTTP 201 for created. HTTP 204 for updated.
+
+DELETE /guides/:guideId
+Response: HTTP 204 for success. HTTP 404 if resource doesn't exist.
+
+
+
+GET /guides/:guideId/sections
+Response: <Section[]>
+
+GET /guides/:guideId/sections/:sectionId
+Response: <Section>
+
+PUT /guides/:guideId/sections/:sectionId
+Request: <Section>
+Response: HTTP 201 for created. HTTP 204 for updated.
+
+DELETE /guides/:guideId/sections/:sectionId
+Response: HTTP 204 for success. HTTP 404 if resource doesn't exist.
+
+
+
+GET /guides/:guideId/sections/:sectionId/tasks
+Response: <Task[]>
+
+GET /guides/:guideId/sections/:sectionId/tasks/:taskId
+Response: <Task>
+
+PUT /guides/:guideId/sections/:sectionId/tasks/:taskId
+Request: <Task>
+Response: HTTP 201 for created. HTTP 204 for updated.
+
+DELETE /guides/:guideId/sections/:sectionId/tasks/:taskId
+Response: HTTP 204 for success. HTTP 404 if resource doesn't exist.
+
+
+
+GET /guides/:guideId/sections/:sectionId/tasks/:taskId/contents
+Response: <ContentBlock[]>
+
+GET /guides/:guideId/sections/:sectionId/tasks/:taskId/contents/:contentId
+Response: <ContentBlock>
+
+PUT /guides/:guideId/sections/:sectionId/tasks/:taskId/contents/:contentId
+Request: <ContentBlock>
+Response: HTTP 201 for created. HTTP 204 for updated.
+
+DELETE /guides/:guideId/sections/:sectionId/tasks/:taskId
+Response: HTTP 204 for success. HTTP 404 if resource doesn't exist.
