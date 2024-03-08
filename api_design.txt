@@ -5,6 +5,9 @@ way, so it's easier to read. Please, refer to `src/data/data.ts` when needed.
 I'll wrap with <> the types that refer to a TypeScript type from `src/data/data.ts`.
 For example, <Guide> means that we are using the type `Guide` from `src/data/data.ts`.
 
+* The Partial<> notation means any of the keys of the data structure could be
+  missing or be undefined. Is meant to represent partial updates in TypeScript, useful
+  for PATH updates.
 
 
 GET /guides
@@ -16,6 +19,10 @@ Response: <Guide>
 PUT /guides/:guideId
 Request: <Guide>
 Response: HTTP 201 for created. HTTP 204 for updated.
+
+PATCH /guides/:guideId
+Request: <Partial<Guide>>
+Response: HTTP 204.
 
 DELETE /guides/:guideId
 Response: HTTP 204 for success. HTTP 404 if resource doesn't exist.
@@ -32,6 +39,10 @@ PUT /guides/:guideId/sections/:sectionId
 Request: <Section>
 Response: HTTP 201 for created. HTTP 204 for updated.
 
+PATCH /guides/:guideId/sections/:sectionId
+Request: <Partial<Section>>
+Response: HTTP 204.
+
 DELETE /guides/:guideId/sections/:sectionId
 Response: HTTP 204 for success. HTTP 404 if resource doesn't exist.
 
@@ -47,6 +58,10 @@ PUT /guides/:guideId/sections/:sectionId/tasks/:taskId
 Request: <Task>
 Response: HTTP 201 for created. HTTP 204 for updated.
 
+PATCH /guides/:guideId/sections/:sectionId/tasks/:taskId
+Request: <Partial<Task>>
+Response: HTTP 204.
+
 DELETE /guides/:guideId/sections/:sectionId/tasks/:taskId
 Response: HTTP 204 for success. HTTP 404 if resource doesn't exist.
 
@@ -61,6 +76,10 @@ Response: <ContentBlock>
 PUT /guides/:guideId/sections/:sectionId/tasks/:taskId/contents/:contentId
 Request: <ContentBlock>
 Response: HTTP 201 for created. HTTP 204 for updated.
+
+PATCH /guides/:guideId/sections/:sectionId/tasks/:taskId/contents/:contentId
+Request: <Partial<ContentBlock>>
+Response: HTTP 204.
 
 DELETE /guides/:guideId/sections/:sectionId/tasks/:taskId
 Response: HTTP 204 for success. HTTP 404 if resource doesn't exist.
